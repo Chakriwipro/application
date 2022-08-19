@@ -1,6 +1,11 @@
 pipeline{
 
 agent any
+	
+tools{
+maven 'maven3.8.6'
+
+}
 
 
 
@@ -9,16 +14,16 @@ stages{
   stage('CheckOutCode'){
     steps{
     git branch: 'main', url: 'https://github.com/Chakriwipro/application.git'
-	
 	}
   }
   
   stage('Build'){
   steps{
-  sh  " clean package"
+     sh  "mvn clean package"
   }
   }
-/*
+
+	/*
  stage('ExecuteSonarQubeReport'){
   steps{
   sh  "mvn clean sonar:sonar"
